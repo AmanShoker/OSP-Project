@@ -36,7 +36,7 @@ class OrderTableController {
         }
     }
 
-    public function insertRecord($conn,$dateIssued,$dateReceived,$totalPrice,$paymentCode,$userId,$tripId,$receiptId){
+    public function createOrder($conn,$dateIssued,$dateReceived,$totalPrice,$paymentCode,$userId,$tripId,$receiptId){
         $sql = "INSERT INTO OrderTable (dateIssued,dateReceived,totalPrice,paymentCode,userId,tripId,receiptId) 
         VALUES ('$dateIssued','$dateReceived',$totalPrice,$paymentCode,$userId,$tripId,$receiptId)";
 
