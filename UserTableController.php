@@ -38,13 +38,13 @@ class UserTableController {
         $sql = "INSERT INTO UserTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance) 
         VALUES ('$fullName','$telNo','$email','$address','$cityCode','$username','$password',$balance)";
 
-        $sql2 = "SELECT * FROM UserTable WHERE username = '$username' OR userPassword = '$password'";
+        $sql2 = "SELECT * FROM UserTable WHERE username = '$username' OR email = '$email'";
         $result = $conn->query($sql2);
         if (mysqli_num_rows($result) >= 1){
             return FALSE;
         }        
         if ($conn->query($sql) === TRUE) {
-            echo "<br>New record created successfully";
+            return TRUE;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }

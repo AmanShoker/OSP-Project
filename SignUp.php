@@ -15,10 +15,16 @@ $email = $_POST['email'];
 $balance = 0;
 
 
-$UTC->insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance);
+if ($UTC->insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance)) {
+    header("Location: SignIn.html");
+    exit();
+} else {
+    header("Location: SignUp.html?error=insertfailed");
+    exit();
+}
 
-//header("Location: Homepage.html");
-//exit();
+
+
 
 $conn->close();
 ?>

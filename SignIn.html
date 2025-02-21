@@ -21,5 +21,13 @@
                 <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
             </div>
         </section>
+        <script>
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+
+            if (error === 'insertfailed') {
+                alert("Incorrect Username or Password. Please Try Again.");
+            }
+        </script>
     </body>
 </html

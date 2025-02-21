@@ -52,6 +52,14 @@
                     return false;
                 } return true;
             }
+
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+
+            if (error === 'insertfailed') {
+                alert("Failed to create user. Please try different username or email.");
+            }
         </script>
     </body>
 </html>
