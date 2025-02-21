@@ -11,7 +11,7 @@
         <section class="sign">
             <div class="sign_card">
                 <h1>Sign Up</h1>
-                <form action="signup.php" method="POST" action="Homepage.html">
+                <form onsubmit="return validatePasswords()" action="SignUp.php" method="POST">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
@@ -41,5 +41,17 @@
                 <p>Already have an account? <a href="signin.html">Sign-in</a></p>
             </div>
         </section>
+
+        <script>
+            function validatePasswords() {
+                const password = document.getElementById('password').value;
+                const repassword = document.getElementById('repassword').value;
+
+                if (password !== repassword) {
+                    alert("Passwords do not Match! Please Try Again");
+                    return false;
+                } return true;
+            }
+        </script>
     </body>
 </html>

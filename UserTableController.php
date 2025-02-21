@@ -35,10 +35,10 @@ class UserTableController {
     }
 
     public function insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance){
-        $sql = "INSERT INTO OrderTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance) 
-        VALUES ($fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance)";
+        $sql = "INSERT INTO UserTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance) 
+        VALUES ('$fullName','$telNo','$email','$address','$cityCode','$username','$password',$balance)";
 
-        $sql2 = "SELECT * FROM UserTable WHERE username = $username OR userPassword = $password";
+        $sql2 = "SELECT * FROM UserTable WHERE username = '$username' OR userPassword = '$password'";
         $result = $conn->query($sql2);
         if (mysqli_num_rows($result) >= 1){
             return FALSE;
@@ -51,7 +51,7 @@ class UserTableController {
     }
 
     public function validLogin($conn,$usernameInput,$passwordInput){
-        $sql = "SELECT * FROM UserTable WHERE username = $usernameInput AND userPassword = $passwordInput";
+        $sql = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordInput'";
         $result = $conn->query($sql);
         if (mysqli_num_rows($result) == 1){
             return TRUE;
