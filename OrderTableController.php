@@ -38,7 +38,7 @@ class OrderTableController {
 
     public function insertRecord($conn,$dateIssued,$dateReceived,$totalPrice,$paymentCode,$userId,$tripId,$receiptId){
         $sql = "INSERT INTO OrderTable (dateIssued,dateReceived,totalPrice,paymentCode,userId,tripId,receiptId) 
-        VALUES ($dateIssued,$dateReceived,$totalPrice,$paymentCode,$userId,$tripId,$receiptId)";
+        VALUES ('$dateIssued','$dateReceived',$totalPrice,$paymentCode,$userId,$tripId,$receiptId)";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";

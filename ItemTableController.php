@@ -8,7 +8,7 @@ class ItemTableController {
             itemName VARCHAR(30) NOT NULL,
             price FLOAT NOT NULL,
             madeIn VARCHAR(30) NOT NULL,
-            departmentCode INT(6) NOT NULL
+            departmentCode CHAR(1) NOT NULL
             )";
 
         if ($conn->query($sql) === TRUE) {
@@ -31,8 +31,8 @@ class ItemTableController {
     }
 
     public function insertRecord($conn,$itemName,$price,$madeIn,$departmentCode){
-        $sql = "INSERT INTO OrderTable (itemName,price,madeIn,departmentCode) 
-        VALUES ($itemName,$price,$madeIn,$departmentCode)";
+        $sql = "INSERT INTO ItemTable (itemName,price,madeIn,departmentCode) 
+        VALUES ('$itemName',$price,'$madeIn','$departmentCode')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";

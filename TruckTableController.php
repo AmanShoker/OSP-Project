@@ -5,7 +5,7 @@ class TruckTableController {
     public function createTable($conn){
         $sql = "CREATE TABLE IF NOT EXISTS TruckTable (
             truckId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            truckCode INT(6) NOT NULL,
+            truckCode VARCHAR(6) NOT NULL,
             availabilityCode INT(6) NOT NULL
             )";
 
@@ -30,7 +30,7 @@ class TruckTableController {
 
     public function insertRecord($conn,$truckCode,$availabilityCode){
         $sql = "INSERT INTO TruckTable (truckCode,availabilityCode) 
-        VALUES ($truckCode,$availabilityCode)";
+        VALUES ('$truckCode',$availabilityCode)";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";

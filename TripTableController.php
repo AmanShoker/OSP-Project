@@ -34,7 +34,7 @@ class TripTableController {
 
     public function insertRecord($conn,$sourceCode,$destinationCode,$distance,$truckId,$price){
         $sql = "INSERT INTO TripTable (sourceCode,destinationCode,distance,truckId,price) 
-        VALUES ($sourceCode,$destinationCode,$distance,$truckId,$price)";
+        VALUES ('$sourceCode','$destinationCode',$distance,$truckId,$price)";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";
