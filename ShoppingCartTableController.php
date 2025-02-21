@@ -33,12 +33,22 @@ class ShoppingCartTableController {
         }
     }
 
-    public function insertRecord($conn,$itemId,$userId,$price,$madeIn,$departmentCode){
+    public function addToCart($conn,$itemId,$userId,$price,$madeIn,$departmentCode){
         $sql = "INSERT INTO ShoppingCartTable (itemId,userId,price,madeIn,departmentCode) 
         VALUES ($itemId,$userId,$price,'$madeIn',$departmentCode)";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
+    public function removeFromCart($conn,$cartItemId){
+        $sql = "DELETE FROM ShoppingCartTable WHERE cartItemId = $cartItemId";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<br>New record deleted successfully";
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
