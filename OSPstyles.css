@@ -2,7 +2,7 @@ body {
     background-image: url("images/background.png");
     background-size: cover;
     font-family: Verdana, sans-serif;
-    color: #333
+    color: #333;
 }
 
 /* Nav Bar */
@@ -88,12 +88,32 @@ ul li:hover ul.dropdown {
     color: white;
 }
 
+#signIn-Up a.signOut {
+    background-color: #cb4444; 
+    color: white;
+}
+
 #signIn-Up a.sign-in:hover {
     background-color: #7085b1; 
 }
 
 #signIn-Up a.sign-up:hover {
     background-color: #96516a; 
+}
+
+#signIn-Up a.signOut:hover {
+    background-color: #b71212; 
+}
+
+/* Homepage */
+#welcome {
+    margin: 75px;
+    text-align: center;
+}
+
+#welcome h1 {
+    font-size: 5rem;
+    color: #333;
 }
 
 /* About Us */
@@ -103,7 +123,7 @@ ul li:hover ul.dropdown {
 }
 
 #about-us h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 40px;
     color: #333;
 }

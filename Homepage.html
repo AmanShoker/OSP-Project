@@ -29,5 +29,15 @@
                 </li>
             </ul>
         </header>
+        <div id="welcome"></div>
+
+        <script src="SignedIn.js"></script>
+        <script>
+            if (isSignedIn === 'true' && username) {
+                document.getElementById('welcome').innerHTML = `<h1>Welcome back, ${username}!</h1>`;
+            } else {
+                document.getElementById('welcome').innerHTML = `<h1>Welcome to Our Site</h1>`;
+            }
+        </script>
     </body>
 </html>
