@@ -54,8 +54,12 @@ session_start();
                 <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
                 <li><a href="#">Reviews</a></li>
                 <li id="signIn-Up">
-                    <a href="SignIn.html" class="sign-in">Sign-in</a>
-                    <a href="SignUp.html" class="sign-up">Sign Up</a>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <a href="SignOut.php" class="signOut">Sign Out</a>
+                    <?php else: ?>
+                        <a href="SignIn.html" class="sign-in">Sign-in</a>
+                        <a href="SignUp.html" class="sign-up">Sign Up</a>
+                    <?php endif; ?>
                 </li>
             </ul>
         </header>
