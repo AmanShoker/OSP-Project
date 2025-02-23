@@ -6,7 +6,7 @@ session_start();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>OSP Homepage</title>
+        <title>Payment</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
         <link rel="stylesheet" href="OSPstyles.css">
     </head>
@@ -32,15 +32,7 @@ session_start();
                 </li>
             </ul>
         </header>
-        <div id="welcome"></div>
 
         <script src="SignedIn.js"></script>
-        <script>
-        if (isSignedIn === 'true' && username) {
-            document.getElementById('welcome').innerHTML = `<h1>Welcome back, ${username}!</h1>`;
-        } else {
-            document.getElementById('welcome').innerHTML = `<h1>Welcome to Our Site</h1>`;
-        }
-        </script>
     </body>
 </html>

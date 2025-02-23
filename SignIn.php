@@ -1,5 +1,5 @@
 <?php 
-
+session_start();
 require "connect.php"; 
 require "UserTableController.php";
 
@@ -9,17 +9,13 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 if ($UTC->validLogin($conn,$username,$password)) {
-
-    setcookie('isSignedIn', 'true', time() + (86400), "/"); 
-    setcookie('username', $username, time() + (86400), "/");
-
-    header("Location: Homepage.html");
+    $_SESSION['username'] = $username;
+    $_SESSION['password'] = $password;
+    header("Location: Homepage.php");
     exit();
 } else {
     header("Location: SignIn.html?error=insertfailed");
     exit();
 }
-
-$conn->close();
 
 ?>

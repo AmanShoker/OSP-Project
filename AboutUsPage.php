@@ -6,7 +6,7 @@ session_start();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>OSP Homepage</title>
+        <title>About Us</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
         <link rel="stylesheet" href="OSPstyles.css">
     </head>
@@ -32,15 +32,34 @@ session_start();
                 </li>
             </ul>
         </header>
-        <div id="welcome"></div>
 
         <script src="SignedIn.js"></script>
-        <script>
-        if (isSignedIn === 'true' && username) {
-            document.getElementById('welcome').innerHTML = `<h1>Welcome back, ${username}!</h1>`;
-        } else {
-            document.getElementById('welcome').innerHTML = `<h1>Welcome to Our Site</h1>`;
-        }
-        </script>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <div class="team-members">
+
+                <div class="member-card">
+                    <img src="images/tempPFP.png" alt="Aman Shoker">
+                    <h3>Aman Shoker</h3>
+                    <p class="bio">blah blah blah</p>
+                    <p class="contact">Email: aman.shoker@torontomu.ca</p>
+                </div>
+
+                <div class="member-card">
+                    <img src="images/tempPFP.png" alt="name">
+                    <h3>Anthony Pochapsky</h3>
+                    <p class="bio">blah blah blah</p>
+                    <p class="contact">Email: blah@blah.com</p>
+                </div>
+
+                <div class="member-card">
+                    <img src="images/tempPFP.png" alt="name">
+                    <h3>name</h3>
+                    <p class="bio">blah blah blah</p>
+                    <p class="contact">Email: blah@blah.com</p>
+                </div>
+            </div>
+        </section>
     </body>
 </html>

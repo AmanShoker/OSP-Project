@@ -13,20 +13,20 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
-        <header>
+    <header>
             <ul>
                 <li><img src="images/shopping_icon.png"></li>
                 <li><a href=Homepage.php>Home</a></li>
-                <li><a href=AboutUsPage.html>About Us</a></li>
+                <li><a href=AboutUsPage.php>About Us</a></li>
                 <li>
                     <a href="#">Types of Services</a>
                     <ul class="dropdown">
                         <li><a href="Catalogue.php">Shopping</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Payment</a></li>
+                        <li><a href="Delivery.php">Delivery</a></li>
+                        <li><a href="Payment.php">Payment</a></li>
                     </ul>
                 </li>
-                <li><a href="ShoppingCart.php">Shopping Cart</a></li>
+                <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
                 <li><a href="#">Reviews</a></li>
                 <li id="signIn-Up">
                     <a href="SignIn.html" class="sign-in">Sign-in</a>
@@ -54,7 +54,7 @@ session_start();
             $result=$SCTC->getShoppingCartItems($conn,$userId);
            
             if($result->num_rows > 0){
-                echo "<form action='checkout.php' method='post'>";
+                echo "<form action='#' method='post'>";
                 echo "<table>";
                 echo "<tr> <th>Remove</th> <th>Name</th> <th>made In</th> <th>Quantity</th> <th>Price</th></tr>";
                 while ($row = $result->fetch_assoc()){
@@ -63,7 +63,7 @@ session_start();
                 $price=$row["price"];
                 $madeIn=$row["madeIn"];
                 $departmentCode=$row["departmentCode"];
-                echo "<tr> <td><a href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td>$itemName</td> <td>$madeIn</td> <td><input type='number' value=1 itemPrice=$price updateFieldId=$itemId min='1' max='10'></td> <td id=$itemId>$$price</td> </tr>";
+                echo "<tr> <td><a href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td>$itemName</td> <td>$madeIn</td> <td><input type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td id=$itemId>$$price</td> </tr>";
                 }
                 echo "</table>";
                 echo "<input type=submit value=Checkout style='float:right; margin-right:5%; padding: 8px 16px;background-color: #007bff;color: white;border: none;border-radius: 8px; '>";

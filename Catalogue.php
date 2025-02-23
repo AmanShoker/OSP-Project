@@ -42,13 +42,13 @@ session_start();
             <ul>
                 <li><img src="images/shopping_icon.png"></li>
                 <li><a href=Homepage.php>Home</a></li>
-                <li><a href=AboutUsPage.html>About Us</a></li>
+                <li><a href=AboutUsPage.php>About Us</a></li>
                 <li>
                     <a href="#">Types of Services</a>
                     <ul class="dropdown">
-                        <li><a href="#">Shopping</a></li>
-                        <li><a href="#">Delivery</a></li>
-                        <li><a href="#">Payment</a></li>
+                        <li><a href="Catalogue.php">Shopping</a></li>
+                        <li><a href="Delivery.php">Delivery</a></li>
+                        <li><a href="Payment.php">Payment</a></li>
                     </ul>
                 </li>
                 <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
