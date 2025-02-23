@@ -4,13 +4,14 @@ class ShoppingCartTableController {
 
     public function createTable($conn){
         $sql = "CREATE TABLE IF NOT EXISTS ShoppingCartTable (
-            cartItemId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             itemId INT(6) UNSIGNED,
             userId INT(6) UNSIGNED,
-            price INT(6) NOT NULL,
+            itemName VARCHAR(30) NOT NULL,
+            price FLOAT NOT NULL,
             madeIn VARCHAR(30) NOT NULL,
-            departmentCode INT(6) NOT NULL,
-            FOREIGN KEY (itemID) REFERENCES ItemTable(itemID) ON DELETE CASCADE,
+            departmentCode CHAR(1) NOT NULL,
+            PRIMARY KEY(itemId, userId),
+            FOREIGN KEY (itemId) REFERENCES ItemTable(itemId) ON DELETE CASCADE,
             FOREIGN KEY (userId) REFERENCES UserTable(userId) ON DELETE CASCADE
             )";
 
@@ -33,9 +34,9 @@ class ShoppingCartTableController {
         }
     }
 
-    public function addToCart($conn,$itemId,$userId,$price,$madeIn,$departmentCode){
-        $sql = "INSERT INTO ShoppingCartTable (itemId,userId,price,madeIn,departmentCode) 
-        VALUES ($itemId,$userId,$price,'$madeIn',$departmentCode)";
+    public function addToCart($conn,$itemId,$userId,$itemName,$price,$madeIn,$departmentCode){
+        $sql = "INSERT INTO ShoppingCartTable (itemId,userId,itemName,price,madeIn,departmentCode) 
+        VALUES ($itemId,$userId,'$itemName',$price,'$madeIn','$departmentCode')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record created successfully";
@@ -44,8 +45,8 @@ class ShoppingCartTableController {
         }
     }
 
-    public function removeFromCart($conn,$cartItemId){
-        $sql = "DELETE FROM ShoppingCartTable WHERE cartItemId = $cartItemId";
+    public function removeFromCart($conn,$IID,$UID){
+        $sql = "DELETE FROM ShoppingCartTable WHERE itemId = $IID AND userId = $UID";
 
         if ($conn->query($sql) === TRUE) {
             echo "<br>New record deleted successfully";
@@ -54,11 +55,18 @@ class ShoppingCartTableController {
         }
     }
 
-    public function showShoppingCartItems($conn,$IID){
-        $sql = "SELECT * FROM ShoppingCartTable WHERE userId = $UID";
+    public function getShoppingCartItems($conn,$UID){
+        $sql = "SELECT itemId,itemName,price,madeIn,departmentCode FROM ShoppingCartTable WHERE userId = $UID";
         $result = $conn->query($sql);
         return $result;
     }
+
+    public function getSpecificCartItem($conn,$UID,$IID){
+        $sql = "SELECT * FROM ShoppingCartTable WHERE userId = $UID AND itemId = $IID";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
 
 }
 ?>

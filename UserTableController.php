@@ -61,5 +61,11 @@ class UserTableController {
         }
     }
 
+    public function getUserId($conn,$username,$password){
+        $sql = "SELECT userId FROM UserTable WHERE username = '$username' AND userPassword = '$password'";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
 }
 ?>
