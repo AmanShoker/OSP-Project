@@ -5,11 +5,12 @@ class UserTableController {
     public function createTable($conn){
         $sql = "CREATE TABLE IF NOT EXISTS UserTable (
             userId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            fullName VARCHAR(30) NOT NULL,
-            telNo VARCHAR(30) NOT NULL,
-            email VARCHAR(50) NOT NULL,
-            homeAddress VARCHAR(50) NOT NULL,
-            cityCode CHAR(6) NOT NULL,
+            admin BOOLEAN NOT NULL DEFAULT 0,
+            fullName VARCHAR(30),
+            telNo VARCHAR(30),
+            email VARCHAR(50),
+            homeAddress VARCHAR(50),
+            cityCode CHAR(6),
             username VARCHAR(30) NOT NULL,
             userPassword VARCHAR(30) NOT NULL,
             balance FLOAT
