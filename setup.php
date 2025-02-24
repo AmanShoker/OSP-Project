@@ -40,6 +40,9 @@ $ITC->insertRecord($conn,"images/Notebook.jpg","Notebook 9",800,"USA","E");
 $ITC->insertRecord($conn,"images/Ipad.jpg","Ipad Pro Tablet",750,"Canada","E");
 $ITC->insertRecord($conn,"images/Blackberry.jpg","BlackBerry Bold",600,"USA","E");
 
+//Insert root user admin account
+$UTC->insertAdminRecord($conn,"root","1234",1);
+
 //Terminate connection
 $conn->close();
 ?>
