@@ -51,6 +51,22 @@ class UserTableController {
         }
     }
 
+    public function insertAdminRecord($conn,$username,$password,$adminFlag){
+        $sql = "INSERT INTO UserTable (username,password,admin) 
+        VALUES ('$username','$password',$adminFlag)";
+
+        $sql2 = "SELECT * FROM UserTable WHERE username = '$username' ";
+        $result = $conn->query($sql2);
+        if (mysqli_num_rows($result) >= 1){
+            return FALSE;
+        }        
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    }
+
     public function validLogin($conn,$usernameInput,$passwordInput){
         $sql = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordInput'";
         $result = $conn->query($sql);
