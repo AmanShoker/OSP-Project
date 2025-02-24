@@ -5,7 +5,7 @@ class UserTableController {
     public function createTable($conn){
         $sql = "CREATE TABLE IF NOT EXISTS UserTable (
             userId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            admin BOOLEAN NOT NULL DEFAULT 0,
+            adminFlag BOOLEAN DEFAULT 0,
             fullName VARCHAR(30),
             telNo VARCHAR(30),
             email VARCHAR(50),
@@ -52,7 +52,7 @@ class UserTableController {
     }
 
     public function insertAdminRecord($conn,$username,$password,$adminFlag){
-        $sql = "INSERT INTO UserTable (username,password,admin) 
+        $sql = "INSERT INTO UserTable (username,userPassword,adminFlag) 
         VALUES ('$username','$password',$adminFlag)";
 
         $sql2 = "SELECT * FROM UserTable WHERE username = '$username' ";
