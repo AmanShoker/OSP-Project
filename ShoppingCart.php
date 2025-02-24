@@ -28,6 +28,15 @@ session_start();
                 </li>
                 <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
                 <li><a href="#">Reviews</a></li>
+                <li>
+                    <a href="#">DB Maintain</a>
+                    <ul class="dropdown">
+                        <li><a href="AdminInsert.php">Insert</a></li>
+                        <li><a href="AdmionDelete.php">Delete</a></li>
+                        <li><a href="AdminSelect.php">Select</a></li>
+                        <li><a href="AdminUpdate.php">Update</a></li>
+                    </ul>
+                </li>
                 <li id="signIn-Up">
                     <?php if (isset($_SESSION['username'])): ?>
                         <a href="SignOut.php" class="signOut">Sign Out</a>
