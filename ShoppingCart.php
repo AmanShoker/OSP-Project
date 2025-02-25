@@ -13,6 +13,16 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+            const error = urlParams.get('error');
+
+            if (error === 'paymentFailed') {
+                alert("Failed to process your payment. Reason: low balance");
+            }
+    </script>
+
     <header>
             <ul>
                 <li><img src="images/shopping_icon.png"></li>

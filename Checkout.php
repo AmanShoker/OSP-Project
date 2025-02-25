@@ -20,6 +20,7 @@ session_start();
     </style>
     </head>
     <body>
+
     <header>
             <ul>
                 <li><img src="images/shopping_icon.png"></li>
@@ -58,7 +59,6 @@ session_start();
         <script src="SignedIn.js"></script>
 
         <main>
-
         <?php
             $records = array_values($_POST);
             echo "<table style='width:50%;'>";
@@ -71,30 +71,31 @@ session_start();
             }
             echo "</table>";
             echo ".................................................................................................<br>";
-            echo "<div style='width:60%; float:right; font-weight:bold;'>TOTAL:$$subTotal</div> <br><br>";           
-        ?>
-
+            echo "<div style='width:60%; float:right; font-weight:bold;'>TOTAL:$$subTotal</div> <br><br>";    
+            
+            
+        echo "
         <div>
-            <form style="float:left;" method="post">
+            <form style='float:left;' method='get' action='ProcessPayment.php'>
                 
-                <label for="branches">Select one of our three branch locations nearest to you:</label>
-                <select id="branches" name="branches" onchange="initMap()">
-                    <option value="B1">Branch 1</option>
-                    <option value="B2">Branch 2</option>
-                    <option value="B3">Branch 3</option>
+                <label for='branches'>Select one of our three branch locations nearest to you:</label>
+                <select id='branches' name='branches' onchange='initMap()''>
+                    <option value='B1'>Branch 1</option>
+                    <option value='B2'>Branch 2</option>
+                    <option value='B3'>Branch 3</option>
                 </select><br><br>
-                <label for="deliveryDate"> Select a date for when you want your products to be delivered to you:</label>
-                <input type="date" name="deliveryDate" value="2025-01-01" min="2025-01-01" max="2025-12-31"><br><br>
-                <label for="paymentOption">Select a payment option:</label>
-                <select name="paymentOption">
-                    <option value="creditCard">Credit Card</option>
+                <label for='deliveryDate'> Select a date for when you want your products to be delivered to you:</label>
+                <input type='date' name='deliveryDate' value='2025-01-01' min='2025-01-01' max='2025-12-31'><br><br>
+                <label for='paymentOption'>Select a payment option:</label>
+                <select name='paymentOption'>
+                    <option value='creditCard'>Credit Card</option>
                 </select><br><br>
-                <input type="submit" value="Process Payment"><br><br>
+                <input type='hidden' name='totalPayment' value='$subTotal'>
+                <input type='submit' value='Process Payment'><br><br>
             </form>
-
-            <div style="float:left; margin-left:5%;" id="map"></div>
-        </div>
-
+        </div> "
+        ?>
+        <div style="float:left; margin-left:5%;" id="map"></div>
         <script async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDc8t67_v0mNHJg-ISUBvdKg2vihgVIZJU&loading=async&libraries=visualization&callback=initMap">
         </script>
