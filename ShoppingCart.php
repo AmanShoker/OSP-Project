@@ -67,7 +67,7 @@ session_start();
             $result=$SCTC->getShoppingCartItems($conn,$userId);
            
             if($result->num_rows > 0){
-                echo "<form action='#' method='post'>";
+                echo "<form action='Checkout.php' method='post'>";
                 echo "<table>";
                 echo "<tr> <th>Remove</th> <th>Name</th> <th>made In</th> <th>Quantity</th> <th>Price</th></tr>";
                 while ($row = $result->fetch_assoc()){
@@ -76,7 +76,7 @@ session_start();
                 $price=$row["price"];
                 $madeIn=$row["madeIn"];
                 $departmentCode=$row["departmentCode"];
-                echo "<tr> <td><a href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td>$itemName</td> <td>$madeIn</td> <td><input type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td id=$itemId>$$price</td> </tr>";
+                echo "<tr> <td><a href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' type='text' value=$itemName></input></td> <td>$madeIn</td> <td><input style='text-align:center;' name='{$itemId}[]' type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' id=$itemId type='text' value='$$price'></input></td> </tr>";
                 }
                 echo "</table>";
                 echo "<input type=submit value=Checkout style='float:right; margin-right:5%; padding: 8px 16px;background-color: #007bff;color: white;border: none;border-radius: 8px; '>";
@@ -92,7 +92,7 @@ session_start();
                     let priceId = $(this).attr("updateFieldId");
                     let quantity = $(this).val();
                     let price = $(this).attr("itemPrice");
-                    document.getElementById(priceId).innerHTML = "$" + (price*quantity);       
+                    document.getElementById(priceId).value = "$" + (price*quantity);       
                  });
             </script>
         </main>
