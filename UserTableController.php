@@ -84,5 +84,16 @@ class UserTableController {
         return $result;
     }
 
+
+    public function checkIfAdmin($conn,$username) {
+        $sql = "SELECT * FROM UserTable WHERE username = '$username' AND adminFlag = '1'";
+        $result = $conn->query($sql);
+        if (mysqli_num_rows($result) == 1){
+            return TRUE;
+        }
+        else{
+            return FALSE;
+        }
+    }
 }
 ?>
