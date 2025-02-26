@@ -44,15 +44,25 @@ session_start();
                 <li><a href=Homepage.php>Home</a></li>
                 <li><a href=AboutUsPage.php>About Us</a></li>
                 <li>
-                    <a href="#">Types of Services</a>
+                    <a href="#">Catalogue</a>
                     <ul class="dropdown">
-                        <li><a href="Catalogue.php">Shopping</a></li>
-                        <li><a href="Delivery.php">Delivery</a></li>
-                        <li><a href="Payment.php">Payment</a></li>
+                        <li><a href="Catalogue.php">Electronics</a></li>
+                        <li><a href="#">Gardening</a></li>
+                        <li><a href="#">Sports</a></li>
+                        <li><a href="#">Clothes</a></li>
                     </ul>
                 </li>
                 <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
                 <li><a href="#">Reviews</a></li>
+                <?php 
+                    require "connect.php";
+                    require "UserTableController.php";
+                    
+                    if (isset($_SESSION['username'])) {
+                        $UTC = New UserTableController();
+                        $username = $_SESSION["username"];
+                        
+                        if ($UTC->checkIfAdmin($conn,$username)): ?>
                 <li>
                     <a href="#">DB Maintain</a>
                     <ul class="dropdown">
@@ -62,6 +72,7 @@ session_start();
                         <li><a href="AdminUpdate.php">Update</a></li>
                     </ul>
                 </li>
+                <?php endif; } ?>
                 <li id="signIn-Up">
                     <?php if (isset($_SESSION['username'])): ?>
                         <a href="SignOut.php" class="signOut">Sign Out</a>
