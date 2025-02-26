@@ -35,10 +35,10 @@ $SCTC->createTable($conn);
 $TruckTC->insertRecord($conn,"ST",5325);
 $TruckTC->insertRecord($conn,"MT",3258);
 
-$ITC->insertRecord($conn,"images/Macbook.jpeg","MacBook Pro",1200,"Canada","E");
-$ITC->insertRecord($conn,"images/Notebook.jpg","Notebook 9",800,"USA","E");
-$ITC->insertRecord($conn,"images/Ipad.jpg","Ipad Pro Tablet",750,"Canada","E");
-$ITC->insertRecord($conn,"images/Blackberry.jpg","BlackBerry Bold",600,"USA","E");
+$ITC->insertRecord($conn,"images/macbookpro.png","Apple MacBook Pro",1200,"Canada","E");
+$ITC->insertRecord($conn,"images/notebook9.png","Samsung Notebook 9",800,"USA","E");
+$ITC->insertRecord($conn,"images/ipadpro.png","Apple Ipad Pro Tablet",750,"Canada","E");
+$ITC->insertRecord($conn,"images/bold9900.png","BlackBerry Bold 9900",600,"USA","E");
 
 //Insert root user admin account
 $UTC->insertAdminRecord($conn,"root","1234",1);

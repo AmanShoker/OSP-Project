@@ -9,6 +9,7 @@ table {
     overflow: hidden;
     border: 2px solid #aaaaaa;
     border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 table th, table td {
@@ -29,8 +30,8 @@ tr:nth-child(odd) {
 
 
 img.ItemImage {
-    width: 250px;
-    height: auto;
+    height: 200px;
+    width: auto;
 }
 
 img.ItemImage:hover {
@@ -43,13 +44,36 @@ img.ItemImage:hover {
     float:right;
     margin-right:5%; 
     padding: 8px 16px;
-    background-color:#ff94d8;
+    background-color:#9174d2;
     color: #333;
     border: none;
     border-radius: 8px;
-
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 #checkout:hover {
-    background-color:#e86ebb;
+    background-color:#8b64e0;
+}
+
+#remove {
+    margin: 7px; 
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 50px; 
+    transition: background-color 0.3s ease;
+    background-color: #cb4444; 
+    color: white;
+}
+
+#remove:hover {
+    background-color: #b71212; 
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    margin: 50px;
 }
