@@ -6,7 +6,7 @@ session_start();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shopping Catalogue</title>
+        <title>Electronics Catalogue</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
         <link rel="stylesheet" href="OSPstyles.css">
         <link rel="stylesheet" href="CatalogueStyles.css">
@@ -33,9 +33,11 @@ session_start();
 
             if (itemStatus === 'True') {
                 alert("Successfully added to your shopping cart");
+                window.close();
             }
             else if (itemStatus === 'False'){
                 alert("Item Already contained in shopping cart");
+                window.close();
             }
         </script>
         <header>
@@ -100,7 +102,11 @@ session_start();
                     $price = $row["price"];
                     $madeIn = $row["madeIn"];
                     $departmentCode = $row["departmentCode"];
-                    echo "<tr> <td><img src='$imageLoc' draggable='true' ondragstart='drag(event)' id='$Id' class='ItemImage'></td> <td>$itemName</td> <td>$price</td> <td>$madeIn</td> <td>$departmentCode</td> </tr>";
+                    if (isset($_SESSION['username'])) {
+                        echo "<tr> <td><img src='$imageLoc' draggable='true' ondragstart='drag(event)' id='$Id' class='ItemImage'></td> <td>$itemName</td> <td>$price</td> <td>$madeIn</td> <td>$departmentCode</td> </tr>";
+                    } else {
+                        echo "<tr> <td><img src='$imageLoc' draggable='false' ondragstart='drag(event)' id='$Id' class='ItemImage'></td> <td>$itemName</td> <td>$price</td> <td>$madeIn</td> <td>$departmentCode</td> </tr>";
+                    }
                 }
                 echo "</table>";
             ?>
