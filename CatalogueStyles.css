@@ -2,24 +2,29 @@ table {
     width: 90%;
     margin: 20px auto;
     border-collapse: collapse;
-    color: #7b506fff;
+    color: #333;
     font-size: 1rem;
     font-weight: bold;
-    background-color: #ead7d1ff;
-    border: 2px solid #dd99bbff;
-    border-radius: 10px;
+    background-color: #fff;
     overflow: hidden;
+    border: 2px solid #aaaaaa;
+    border-radius: 10px;
 }
 
 table th, table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #dd99bbff;
+    border: 2px solid #838383;
+
 }
 
 table th {
-    background-color: #dd99bbff;
-    color: #1f1a38ff;
+    background-color: #aeaeae;
+    color: #333;
+}
+
+tr:nth-child(odd) {
+    background-color: #e6e6e6;
 }
 
 
@@ -32,3 +37,19 @@ img.ItemImage:hover {
     transform: scale(1.1);
 }
 
+#checkout {
+    font-size: 2em;
+    font-weight: bold;;
+    float:right;
+    margin-right:5%; 
+    padding: 8px 16px;
+    background-color:#ff94d8;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+
+}
+
+#checkout:hover {
+    background-color:#e86ebb;
+}

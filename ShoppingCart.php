@@ -87,7 +87,7 @@ session_start();
                     if($result->num_rows > 0){
                         echo "<form action='Checkout.php' method='post'>";
                         echo "<table>";
-                        echo "<tr> <th>Remove</th> <th>Name</th> <th>made In</th> <th>Quantity</th> <th>Price</th></tr>";
+                        echo "<tr> <th>Remove</th> <th>Name</th> <th>Made In</th> <th>Quantity</th> <th>Price</th></tr>";
                         while ($row = $result->fetch_assoc()){
                         $itemId=$row["itemId"];
                         $itemName=$row["itemName"];
@@ -97,7 +97,7 @@ session_start();
                         echo "<tr> <td><a href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' type='text' value=$itemName></input></td> <td>$madeIn</td> <td><input style='text-align:center;' name='{$itemId}[]' type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' id=$itemId type='text' value='$$price'></input></td> </tr>";
                         }
                         echo "</table>";
-                        echo "<input type=submit value=Checkout style='float:right; margin-right:5%; padding: 8px 16px;background-color: #007bff;color: white;border: none;border-radius: 8px; '>";
+                        echo "<input type=submit value=Checkout id='checkout'>";
                         echo "</form>";
                     }
                     else{

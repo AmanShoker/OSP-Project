@@ -94,7 +94,7 @@ session_start();
                 $ITC = New ItemTableController();
                 $result = $ITC->getAllItems($conn);
                 echo "<table>";
-                echo "<tr> <th>Image</th> <th>Name</th> <th>Price</th> <th>MadeIn</th> <th>Department Code</th> </tr>";
+                echo "<tr> <th>Image</th> <th>Name</th> <th>Price</th> <th>Made In</th> <th>Department Code</th> </tr>";
                 while ($row = $result->fetch_assoc()){
                     $Id = $row["itemId"];
                     $imageLoc = $row["imageLoc"];

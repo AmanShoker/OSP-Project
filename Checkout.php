@@ -21,7 +21,7 @@ session_start();
     </head>
     <body>
 
-    <header>
+        <header>
             <ul>
                 <li><img src="images/shopping_icon.png"></li>
                 <li><a href=Homepage.php>Home</a></li>
