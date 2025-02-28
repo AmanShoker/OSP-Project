@@ -84,6 +84,11 @@ class UserTableController {
         return $result;
     }
 
+    public function getUserRecord($conn,$userId) {
+        $sql = "SELECT balance FROM UserTable WHERE userId = '$userId'";
+        $result = $conn->query($sql);
+        return $result;
+    }
 
     public function checkIfAdmin($conn,$username) {
         $sql = "SELECT * FROM UserTable WHERE username = '$username' AND adminFlag = '1'";

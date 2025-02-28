@@ -57,7 +57,6 @@ session_start();
             </ul>
         </header>
 
-        <script src="SignedIn.js"></script>
 
         <main>
             <?php
@@ -72,12 +71,9 @@ session_start();
             $userBalance = $record['balance'];
             
             $subTotal = $_GET['totalPayment'];
-            if ($userBalance < $subTotal){
-                header("Location: ShoppingCart.php?error=paymentFailed");
-            }
-            echo "<h1 style='text-align:center;'>Your payment has been processed and shall be delivered to you by your specified date!</h1>";
-
             ?>
+
+            <h1 style='text-align:center;'>Your payment has been processed and shall be delivered to you by your specified date!</h1>
         </main>
     </body>
 </html>

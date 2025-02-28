@@ -57,8 +57,6 @@ session_start();
             </ul>
         </header>
 
-        <script src="SignedIn.js"></script>
-
         <section id="about-us">
             <h2>About Us</h2>
             <div class="team-members">
