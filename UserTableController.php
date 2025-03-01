@@ -100,5 +100,11 @@ class UserTableController {
             return FALSE;
         }
     }
+
+    public function getAddress($conn, $username) {
+        $sql = "SELECT homeAddress FROM UserTable WHERE username = '$username'";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }
 ?>

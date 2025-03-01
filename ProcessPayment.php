@@ -120,6 +120,37 @@ session_start();
             }
             $dateIssued = getTodayDate();
 
+            if ($selectedBranch == "Downtown Toronto Branch") {
+                $truckCode = 'MT';
+            } else {
+                $truckCode = 'ST';
+            }
+
+            $storeCode = 1456;
+            $tripPrice = 50;
+            $distance = 25;
+            $paymentCode = 14145;
+
+            $RecordArray = $TruckTC->getTruckId($conn, $truckCode);
+            $Record = $RecordArray->fetch_assoc();
+            $truckId=$Record["truckId"];
+
+            $RecordArray = $UTC->getAddress($conn, $username);
+            $Record = $RecordArray->fetch_assoc();
+            $destination=$Record["homeAddress"];
+
+            $TripTC->insertRecord($conn, $selectedBranch, $destination, $distance, $truckId, $tripPrice);
+            $STC->insertRecord($conn,$storeCode, $Total);
+
+            $RecordArray = $TripTC->getTripId($conn, $destination, $truckId);
+            $Record = $RecordArray->fetch_assoc();
+            $tripId=$Record["tripId"];
+
+            $RecordArray = $STC->getReceipt($conn, $storeCode, $Total);
+            $Record = $RecordArray->fetch_assoc();
+            $receiptId=$Record["receiptId"];
+
+            $OTC->createOrder($conn,$dateIssued,$deliveryDate,$Total,$paymentCode,$userId,$tripId,$receiptId);
         ?>
 
     </body>

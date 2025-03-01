@@ -33,11 +33,16 @@ class ShoppingTableController {
         VALUES ($storeCode,$totalPrice)";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<br>New record created successfully";
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 
+    public function getReceipt($conn,$storeCode,$totalPrice) {
+        $sql = "SELECT receiptId FROM ShoppingTable WHERE storeCode = $storeCode AND totalPrice = $totalPrice";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }
 ?>

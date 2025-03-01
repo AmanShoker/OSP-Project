@@ -37,11 +37,16 @@ class TripTableController {
         VALUES ('$sourceCode','$destinationCode',$distance,$truckId,$price)";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<br>New record created successfully";
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
 
+    public function getTripId($conn, $destinationCode, $truckId) {
+        $sql = "SELECT tripId FROM TripTable WHERE destinationCode = '$destinationCode' AND truckId = '$truckId'";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }
 ?>

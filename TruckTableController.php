@@ -39,5 +39,10 @@ class TruckTableController {
         }
     }
 
+    public function getTruckID($conn, $truckCode) {
+        $sql = "SELECT truckId FROM TruckTable WHERE truckCode = '$truckCode'";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }
 ?>

@@ -41,7 +41,7 @@ class OrderTableController {
         VALUES ('$dateIssued','$dateReceived',$totalPrice,$paymentCode,$userId,$tripId,$receiptId)";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<br>New record created successfully";
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
