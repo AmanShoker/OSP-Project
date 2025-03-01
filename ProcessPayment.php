@@ -30,6 +30,12 @@ session_start();
                 <?php 
                     require "connect.php";
                     require "UserTableController.php";
+                    require "OrderTableController.php";
+                    require "TripTableController.php";
+                    require "TruckTableController.php";
+                    require "ShoppingTableController.php";
+
+
                     
                     if (isset($_SESSION['username'])) {
                         $UTC = New UserTableController();
@@ -58,6 +64,11 @@ session_start();
         </header>
 
         <?php 
+        $password=$_SESSION["password"];
+        $userIdRecordArray = $UTC->getUserId($conn,$username,$password);
+        $userIdRecord = $userIdRecordArray->fetch_assoc();
+        $userId=$userIdRecord["userId"];
+
         $cartItemsSerialized = $_GET['cartItems'];
         $cartItems = unserialize($cartItemsSerialized); 
         
@@ -66,6 +77,11 @@ session_start();
         $cardNumber = $_GET['cardNumber'];
         $expiryDate = $_GET['expiryDate'];
         $cvv = $_GET['cvv'];
+
+        $OTC = New OrderTableController();
+        $TripTC = New TripTableController();
+        $TruckTC = New TruckTableController();
+        $STC = New ShoppingTableController();
         ?>
 
         <div class="receipt_container">
@@ -98,5 +114,13 @@ session_start();
                 <p>Thank you for shopping with us! Your order will be delivered <?php echo $deliveryDate; ?></p>
             </div>
         </div>
+        <?php 
+            function getTodayDate() {
+                return date("Y-m-d"); 
+            }
+            $dateIssued = getTodayDate();
+
+        ?>
+
     </body>
 </html>
