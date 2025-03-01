@@ -8,7 +8,7 @@ session_start();
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Checkout</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
-        <link rel="stylesheet" href="OSPstyles.css">
+        <link rel="stylesheet" href="PaymentStyles.css">
     </head>
     <body>
     <header>
@@ -57,23 +57,46 @@ session_start();
             </ul>
         </header>
 
+        <?php 
+        $cartItemsSerialized = $_GET['cartItems'];
+        $cartItems = unserialize($cartItemsSerialized); 
+        
+        $deliveryDate = $_GET['deliveryDate'];
+        $selectedBranch = $_GET['branches'];
+        $cardNumber = $_GET['cardNumber'];
+        $expiryDate = $_GET['expiryDate'];
+        $cvv = $_GET['cvv'];
+        ?>
 
-        <main>
-            <?php
-            $username=$_SESSION["username"];
-            $password=$_SESSION["password"];
-            $userIdRecordArray = $UTC->getUserId($conn,$username,$password);
-            $userIdRecord = $userIdRecordArray->fetch_assoc();
-            $userId=$userIdRecord["userId"];
-            
-            $result = $UTC->getUserRecord($conn,$userId);
-            $record = $result->fetch_assoc();
-            $userBalance = $record['balance'];
-            
-            $subTotal = $_GET['totalPayment'];
-            ?>
+        <div class="receipt_container">
+            <h1>Payment Receipt</h1>
+            <div class="receipt_details">
+                <h2>Order Summary</h2>
+                <table class="cart_table">
+                    <tr><th>Name</th><th>Quantity</th><th>Price</th></tr>
+                    <?php
+                    $subTotal = 0;
+                    foreach ($cartItems as $item) {
+                        echo "<tr><td>$item[0]</td><td>x$item[1]</td><td>$item[2]</td></tr>";
+                        $temp = substr($item[2], 1);
+                        $subTotal += $temp;
+                    }
 
-            <h1 style='text-align:center;'>Your payment has been processed and shall be delivered to you by your specified date!</h1>
-        </main>
+                    $Total = $subTotal * 1.13;
+                    ?>
+                </table>
+
+
+                <div class="total_price">SUBTOTAL: $<?php echo $subTotal; ?><br>TOTAL: $<?php echo $Total; ?>
+                </div>
+
+                <h2>Payment Details</h2>
+                <p><strong>Selected Branch:</strong> <?php echo $selectedBranch; ?></p>
+                <p><strong>Card Number:</strong> <?php echo $cardNumber; ?></p>
+            </div>
+            <div class="thank_you">
+                <p>Thank you for shopping with us! Your order will be delivered <?php echo $deliveryDate; ?></p>
+            </div>
+        </div>
     </body>
 </html>

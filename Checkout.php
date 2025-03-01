@@ -72,33 +72,33 @@ session_start();
                     $subTotal += $temp;
                 }
                 echo "</table>";
-                echo "<div class='total_price'>TOTAL: $$subTotal</div>";
+                echo "<div class='total_price'>SUBTOTAL: $$subTotal</div>";
                 ?>   
             </div>
         </div>
         <div class="centre">
             <div class="info_card">
-                <section>
-                    <h1>Payment Information</h2>
-                    <form method='get' action='ProcessPayment.php'>
-                        <label for='branches'>Select Branch Location:</label>
-                        <select id='branches' name='branches' onchange='initMap()'>
-                            <option value='B1'>Downtown Toronto Branch</option>
-                            <option value='B2'>Etobicoke Branch</option>
-                            <option value='B3'>Mississauga Branch</option>
-                        </select><br><br>
-                        <label for='deliveryDate'> Select Delivery Date:</label>
-                        <input type="date" name="deliveryDate" id="deliveryDate" required>
-                        <label for="cardNumber">Card Number:</label>
-                        <input type="text" id="cardNumber" name="cardNumber" required>
-                        <label for="expiryDate">Expiry Date:</label>
-                        <input type="month" id="expiryDate" name="expiryDate" required>
-                        <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" name="cvv" required>
-                        <input type="hidden" name="totalPayment" value="<?php echo $subTotal; ?>">
-                        <button type="submit">Pay</button>
-                    </form>
-                </section>
+            <section>
+            <h1>Payment Information</h1>
+            <form method='get' action='ProcessPayment.php'>
+                <label for='branches'>Select Branch Location:</label>
+                <select id='branches' name='branches' onchange='initMap()'>
+                    <option value='Downtown Toronto Branch'>Downtown Toronto Branch</option>
+                    <option value='Etobicoke Branch'>Etobicoke Branch</option>
+                    <option value='Mississauga Branch'>Mississauga Branch</option>
+                </select><br><br>
+                <label for='deliveryDate'> Select Delivery Date:</label>
+                <input type="date" name="deliveryDate" id="deliveryDate" required>
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" name="cardNumber" required>
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="month" id="expiryDate" name="expiryDate" required>
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+                <input type="hidden" name="cartItems" value="<?php echo htmlspecialchars(serialize($records)); ?>">
+                <button type="submit">Pay</button>
+            </form>
+        </section>
                 <div id="map"></div>
             </div>
         </div>
@@ -165,15 +165,15 @@ session_start();
                         selectedBranchMarker.setMap(null);
                     }
                     let selectedBranch = document.getElementById("branches").value;
-                    if (selectedBranch == "B1"){
+                    if (selectedBranch == "Downtown Toronto Branch"){
                         selectedBranchLat = 43.659561;
                         selectedBranchLong = -79.400377;
                     }
-                    else if (selectedBranch == "B2"){
+                    else if (selectedBranch == "Etobicoke Branch"){
                         selectedBranchLat = 43.669121;
                         selectedBranchLong = -79.540505;
                     }
-                    else if (selectedBranch == "B3"){
+                    else if (selectedBranch == "Mississauga Branch"){
                         selectedBranchLat = 43.596023;
                         selectedBranchLong = -79.694742;
                     }

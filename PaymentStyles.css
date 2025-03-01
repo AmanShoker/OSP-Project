@@ -108,11 +108,11 @@ button:hover {
     margin: 20px 0;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .cart_table th, .cart-table td {
     padding: 12px;
-    text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
@@ -131,15 +131,44 @@ button:hover {
 }
 
 .total_price {
-    font-size: 1.5em;
+    font-size: 1em;
     font-weight: bold;
     margin-top: 20px;
     color: #333;
-    text-align: right;
+    text-align: left;
     padding: 10px;
     background-color: #f4f4f9;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Process Payment */
+
+.receipt_container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.receipt_details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.receipt_details p {
+    font-size: 1.1em;
+    margin: 10px 0;
+    color: #333;
+}
+
+
+.thank_you {
+    margin-top: 20px;
+    color: #dd2110;
 }
 
 /* Nav Bar */

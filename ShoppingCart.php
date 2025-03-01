@@ -94,7 +94,7 @@ session_start();
                         $price=$row["price"];
                         $madeIn=$row["madeIn"];
                         $departmentCode=$row["departmentCode"];
-                        echo "<tr> <td><a id='remove' href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' type='text' value=$itemName></input></td> <td>$madeIn</td> <td><input style='text-align:center;' name='{$itemId}[]' type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' id=$itemId type='text' value='$$price'></input></td> </tr>";
+                        echo "<tr> <td><a id='remove' href='removeFromCart.php?itemId=$itemId'>Remove</a></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' type='text' value='$itemName'></input></td> <td>$madeIn</td> <td><input style='text-align:center;' name='{$itemId}[]' type='number' value=1 itemPrice=$price updateFieldId=$itemId onKeyDown='return false' min='1' max='10'></td> <td><input style='text-align:center;' readonly name='{$itemId}[]' id=$itemId type='text' value='$$price'></input></td> </tr>";
                         }
                         echo "</table>";
                         echo "<input type=submit value=Checkout id='checkout'>";
