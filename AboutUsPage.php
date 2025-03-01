@@ -77,9 +77,9 @@ session_start();
 
                 <div class="member-card">
                     <img src="images/tempPFP.png" alt="name">
-                    <h3>name</h3>
-                    <p class="bio">blah blah blah</p>
-                    <p class="contact">Email: blah@blah.com</p>
+                    <h3>Ayman Mohammad</h3>
+                    <p class="bio">Computer Science @ TMU</p>
+                    <p class="contact">Email: ayman.mohammad@torontomu.ca</p>
                 </div>
             </div>
         </section>
