@@ -53,5 +53,10 @@ class OrderTableController {
         return $result;
     }
 
+    public function getOrder($conn, $UID, $OID){
+        $sql = "SELECT * FROM OrderTable WHERE userId = $UID AND orderId = $OID";
+        $result = $conn->query($sql);
+        return $result;
+    }
 }
 ?>

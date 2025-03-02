@@ -33,7 +33,7 @@ h1 {
     color: #333;
 }
 
-form {
+form:not(#searchBar form):not(#searchToggle form) {
     margin: 5%;
     display: flex;
     flex-direction: column;
@@ -52,7 +52,7 @@ select {
     border-radius: 4px;
     font-size: 16px;}
 
-input {
+input:not(#searchBar input):not(#searchToggle input) {
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
@@ -65,7 +65,7 @@ input:focus, select:focus {
     outline: none;
 }
 
-button {
+button:not(#searchBar button):not(#searchToggle button):not(.search button) {
     margin-top: 25px;
     padding: 10px;
     background-color: #e28a6b;
@@ -86,7 +86,7 @@ button {
     border: 2px solid #333
 }
 
-button:hover {
+button:hover:not(#searchToggle button) {
     background-color: #d77d5c;
 }
 
@@ -169,6 +169,15 @@ button:hover {
 .thank_you {
     margin-top: 20px;
     color: #dd2110;
+}
+
+/* Search */
+#searchToggle #searchBar {
+    display: none;
+}
+
+#searchToggle #searchBar.show {
+    display: block;
 }
 
 /* Nav Bar */

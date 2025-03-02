@@ -46,6 +46,18 @@ session_start();
                     </ul>
                 </li>
                 <?php endif; } ?>
+
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li id="searchToggle">
+                        <a id="searchLink">Search</a>
+
+                        <form id="searchBar" action="Search.php" method="GET">
+                            <input type="text" name="searchQuery" placeholder="Search by Order-Id (leave blank for all)">
+                            <button type="submit" class="search">Search</button>
+                        </form>
+                    </li>
+                <?php endif; ?>
+
                 <li id="signIn-Up">
                     <?php if (isset($_SESSION['username'])): ?>
                         <a href="SignOut.php" class="signOut">Sign Out</a>
@@ -83,5 +95,16 @@ session_start();
                 </div>
             </div>
         </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchLink = document.getElementById('searchLink');
+                const searchForm = document.getElementById('searchBar');
+
+                searchLink.addEventListener('click', function(e) {
+                    searchForm.classList.toggle('show');
+                });
+            });
+        </script>
     </body>
 </html>

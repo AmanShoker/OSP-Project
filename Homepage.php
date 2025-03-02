@@ -47,14 +47,16 @@ session_start();
                 </li>
                 <?php endif; } ?>
                 
-                <li id="searchToggle">
-                    <a href="#" id="searchLink">Search</a>
+                <?php if (isset($_SESSION['username'])): ?>
+                    <li id="searchToggle">
+                        <a id="searchLink">Search</a>
 
-                    <form class="searchBar" action="Search.php" method="GET">
+                        <form id="searchBar" action="Search.php" method="GET">
                             <input type="text" name="searchQuery" placeholder="Search by Order-Id">
                             <button type="submit" class="search">Search</button>
-                    </form>
-                </li>
+                        </form>
+                    </li>
+                <?php endif; ?>
 
                 <li id="signIn-Up">
                     <?php if (isset($_SESSION['username'])): ?>
@@ -74,5 +76,16 @@ session_start();
             <h1>Welcome to Our Site</h1>
         <?php endif; ?>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchLink = document.getElementById('searchLink');
+                const searchForm = document.getElementById('searchBar');
+
+                searchLink.addEventListener('click', function(e) {
+                    searchForm.classList.toggle('show');
+                });
+            });
+        </script>
     </body>
 </html>

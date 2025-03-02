@@ -105,6 +105,15 @@ ul li:hover ul.dropdown {
     background-color: #b71212; 
 }
 
+/* Search */
+#searchToggle #searchBar {
+    display: none;
+}
+
+#searchToggle #searchBar.show {
+    display: block;
+}
+
 /* Homepage */
 #welcome {
     margin: 75px;
