@@ -40,7 +40,7 @@ session_start();
                     <a href="#">DB Maintain</a>
                     <ul class="dropdown">
                         <li><a href="AdminInsert.php">Insert</a></li>
-                        <li><a href="AdmionDelete.php">Delete</a></li>
+                        <li><a href="AdminDelete.php">Delete</a></li>
                         <li><a href="AdminSelect.php">Select</a></li>
                         <li><a href="AdminUpdate.php">Update</a></li>
                     </ul>
