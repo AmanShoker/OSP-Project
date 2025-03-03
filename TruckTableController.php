@@ -45,7 +45,7 @@ class TruckTableController {
         VALUES ('$truckCode',$availabilityCode)";
 
         if ($conn->query($sql) === TRUE) {
-            echo "<br>New record created successfully";
+            
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
