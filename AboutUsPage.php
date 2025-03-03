@@ -74,7 +74,7 @@ session_start();
             <div class="team-members">
 
                 <div class="member-card">
-                    <img src="images/tempPFP.png" alt="Aman Shoker">
+                    <img src="images/aman.jpg" alt="Aman Shoker">
                     <h3>Aman Shoker</h3>
                     <p class="bio">I love Basketball.</p>
                     <p class="contact">Email: aman.shoker@torontomu.ca</p>
