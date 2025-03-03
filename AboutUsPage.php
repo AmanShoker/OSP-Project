@@ -81,10 +81,10 @@ session_start();
                 </div>
 
                 <div class="member-card">
-                    <img src="images/tempPFP.png" alt="name">
+                    <img src="images/anthony.jpeg" alt="images/tempPFP.png">
                     <h3>Anthony Pochapsky</h3>
-                    <p class="bio">blah blah blah</p>
-                    <p class="contact">Email: blah@blah.com</p>
+                    <p class="bio">Tech dude</p>
+                    <p class="contact">Email: apochapsky@torontomu.ca</p>
                 </div>
 
                 <div class="member-card">

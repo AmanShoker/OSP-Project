@@ -133,15 +133,20 @@ session_start();
             $dateIssued = getTodayDate();
 
             if ($selectedBranch == "Downtown Toronto Branch") {
+                $truckCode = 'TT';
+            } else if ($selectedBranch == "Etobicoke Branch") {
+                $truckCode = 'ET';
+            } else if ($selectedBranch == "Mississauga Branch"){
                 $truckCode = 'MT';
-            } else {
-                $truckCode = 'ST';
-            }
+            }           
 
             $storeCode = 1456;
             $tripPrice = 50;
             $distance = 25;
             $paymentCode = 14145;
+
+            $availabilityCode = rand(1111,9999);
+            $TruckTC->insertRecord($conn,$truckCode,$availabilityCode);
 
             $RecordArray = $TruckTC->getTruckId($conn, $truckCode);
             $Record = $RecordArray->fetch_assoc();
