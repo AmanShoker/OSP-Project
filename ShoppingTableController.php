@@ -6,7 +6,7 @@ class ShoppingTableController {
         $sql = "CREATE TABLE IF NOT EXISTS ShoppingTable (
             receiptId INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             storeCode INT(6) NOT NULL,
-            totalPrice INT(6) NOT NULL
+            totalPrice FLOAT NOT NULL
             )";
 
         if ($conn->query($sql) === TRUE) {
@@ -15,6 +15,18 @@ class ShoppingTableController {
         else {
             echo "Error creating table: " . mysqli_error($conn);
         }
+    }
+
+    public function getTableInfo($conn){
+        $sql = "DESCRIBE ShoppingTable";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+    public function getForeignKeys($conn){
+        $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE CONSTRAINT_NAME IN (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_TYPE = 'FOREIGN KEY' AND TABLE_NAME = 'ShoppingTable');";
+        $result = $conn->query($sql);
+        return $result;
     }
 
     public function deleteTable($conn){

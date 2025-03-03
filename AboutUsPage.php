@@ -88,7 +88,7 @@ session_start();
                 </div>
 
                 <div class="member-card">
-                    <img src="images/tempPFP.png" alt="name">
+                    <img src="images/AymanPFP.jpg" alt="name">
                     <h3>Ayman Mohammad</h3>
                     <p class="bio">Computer Science @ TMU</p>
                     <p class="contact">Email: ayman.mohammad@torontomu.ca</p>

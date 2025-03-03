@@ -20,6 +20,18 @@ class ItemTableController {
         }
     }
 
+    public function getTableInfo($conn){
+        $sql = "DESCRIBE ItemTable";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
+    public function getForeignKeys($conn){
+        $sql = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE CONSTRAINT_NAME IN (SELECT CONSTRAINT_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE CONSTRAINT_TYPE = 'FOREIGN KEY' AND TABLE_NAME = 'ItemTable');";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
     public function deleteTable($conn){
         $sql = "DROP TABLE ItemTable";
 
