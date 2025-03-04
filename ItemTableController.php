@@ -43,6 +43,16 @@ class ItemTableController {
         }
     }
 
+    public function deleteRecordPKey($conn, $pkey, $pID){
+        $sql = "DELETE FROM ItemTable WHERE $pkey = $pID";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully<br><br>";
+        } else {
+            echo "Error deleting record: " . $conn->error . "<br><br>";
+        }
+    }
+
     public function insertRecord($conn,$imageLoc,$itemName,$price,$madeIn,$departmentCode){
         $sql = "INSERT INTO ItemTable (imageLoc,itemName,price,madeIn,departmentCode) 
         VALUES ('$imageLoc','$itemName',$price,'$madeIn','$departmentCode')";
@@ -52,6 +62,13 @@ class ItemTableController {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
+
+    public function getAllRecords($conn){
+        $sql = "SELECT * FROM ItemTable";
+        $result = $conn->query($sql);
+        return $result;
+    }
+
     public function getSpecificItem($conn,$IID){
         $sql = "SELECT itemName,price,madeIn,departmentCode FROM ItemTable WHERE itemId = $IID";
         $result = $conn->query($sql);

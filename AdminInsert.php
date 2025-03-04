@@ -7,7 +7,6 @@ session_start();
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Insert</title>
-        <link rel="icon" href="images/shopping_icon.png" type="image/png">
     </head>
     <body>
         <header>

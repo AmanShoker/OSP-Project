@@ -48,6 +48,16 @@ class OrderTableController {
         }
     }
 
+    public function deleteRecordPKey($conn, $pkey, $pID){
+        $sql = "DELETE FROM OrderTable WHERE $pkey = $pID";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully<br><br>";
+        } else {
+            echo "Error deleting record: " . $conn->error . "<br><br>";
+        }
+    }
+
     public function createOrder($conn,$dateIssued,$dateReceived,$totalPrice,$paymentCode,$userId,$tripId,$receiptId){
         $sql = "INSERT INTO OrderTable (dateIssued,dateReceived,totalPrice,paymentCode,userId,tripId,receiptId) 
         VALUES ('$dateIssued','$dateReceived',$totalPrice,$paymentCode,$userId,$tripId,$receiptId)";
@@ -57,6 +67,12 @@ class OrderTableController {
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+    }
+
+    public function getAllRecords($conn){
+        $sql = "SELECT * FROM OrderTable";
+        $result = $conn->query($sql);
+        return $result;
     }
 
     public function showOrderHistory($conn,$UID){

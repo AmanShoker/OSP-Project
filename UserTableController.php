@@ -47,6 +47,16 @@ class UserTableController {
         }
     }
 
+    public function deleteRecordPKey($conn, $pkey, $pID){
+        $sql = "DELETE FROM UserTable WHERE $pkey = $pID";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully<br><br>";
+        } else {
+            echo "Error deleting record: " . $conn->error . "<br><br>";
+        }
+    }
+
     public function insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance){
         $sql = "INSERT INTO UserTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance) 
         VALUES ('$fullName','$telNo','$email','$address','$cityCode','$username','$password',$balance)";
@@ -77,6 +87,12 @@ class UserTableController {
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+    }
+
+    public function getAllRecords($conn){
+        $sql = "SELECT * FROM UserTable";
+        $result = $conn->query($sql);
+        return $result;
     }
 
     public function validLogin($conn,$usernameInput,$passwordInput){

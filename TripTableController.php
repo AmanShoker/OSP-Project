@@ -44,6 +44,16 @@ class TripTableController {
         }
     }
 
+    public function deleteRecordPKey($conn, $pkey, $pID){
+        $sql = "DELETE FROM TripTable WHERE $pkey = $pID";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Record deleted successfully<br><br>";
+        } else {
+            echo "Error deleting record: " . $conn->error . "<br><br>";
+        }
+    }
+
     public function insertRecord($conn,$sourceCode,$destinationCode,$distance,$truckId,$price){
         $sql = "INSERT INTO TripTable (sourceCode,destinationCode,distance,truckId,price) 
         VALUES ('$sourceCode','$destinationCode',$distance,$truckId,$price)";
@@ -53,6 +63,12 @@ class TripTableController {
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
+    }
+
+    public function getAllRecords($conn){
+        $sql = "SELECT * FROM TripTable";
+        $result = $conn->query($sql);
+        return $result;
     }
 
     public function getTripId($conn, $destinationCode, $truckId) {
