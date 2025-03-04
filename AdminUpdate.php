@@ -329,6 +329,7 @@ session_start();
                     unset($_SESSION['table']);
                     unset($_SESSION['pID']);
                     unset($_SESSION['primaryKey']);
+                    unset($_SESSION['fields']);
                 }
             }
             ?>
