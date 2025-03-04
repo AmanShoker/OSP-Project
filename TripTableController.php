@@ -83,6 +83,33 @@ class TripTableController {
         return $conn->query($sql);
     }
 
+    public function updateRecord($conn, $primaryKey, $pID, $updateFields) {
+        $updateStrings = [];
+        
+        foreach ($updateFields as $field => $value) {
+            if (is_numeric($value)) {
+                $updateStrings[] = "$field = $value";
+            } else {
+                $value = $conn->real_escape_string($value);
+                $updateStrings[] = "$field = '$value'";
+            }
+        }
+        
+        if (empty($updateStrings)) {
+            return FALSE;
+        }
+        
+        $updateString = join(", ", $updateStrings);
+        $sql = "UPDATE TripTable SET $updateString WHERE $primaryKey = $pID";
+        
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            return FALSE;
+        }
+    }
+
     public function getTripId($conn, $destinationCode, $truckId) {
         $sql = "SELECT tripId FROM TripTable WHERE destinationCode = '$destinationCode' AND truckId = '$truckId'";
         $result = $conn->query($sql);

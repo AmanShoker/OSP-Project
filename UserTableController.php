@@ -107,6 +107,33 @@ class UserTableController {
         return $conn->query($sql);
     }
 
+    public function updateRecord($conn, $primaryKey, $pID, $updateFields) {
+        $updateStrings = [];
+        
+        foreach ($updateFields as $field => $value) {
+            if (is_numeric($value)) {
+                $updateStrings[] = "$field = $value";
+            } else {
+                $value = $conn->real_escape_string($value);
+                $updateStrings[] = "$field = '$value'";
+            }
+        }
+        
+        if (empty($updateStrings)) {
+            return FALSE;
+        }
+        
+        $updateString = join(", ", $updateStrings);
+        $sql = "UPDATE UserTable SET $updateString WHERE $primaryKey = $pID";
+        
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            return FALSE;
+        }
+    }
+
     public function validLogin($conn,$usernameInput,$passwordInput){
         $sql = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordInput'";
         $result = $conn->query($sql);

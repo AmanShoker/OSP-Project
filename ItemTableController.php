@@ -81,6 +81,33 @@ class ItemTableController {
         return $conn->query($sql);
     }
 
+    public function updateRecord($conn, $primaryKey, $pID, $updateFields) {
+        $updateStrings = [];
+        
+        foreach ($updateFields as $field => $value) {
+            if (is_numeric($value)) {
+                $updateStrings[] = "$field = $value";
+            } else {
+                $value = $conn->real_escape_string($value);
+                $updateStrings[] = "$field = '$value'";
+            }
+        }
+        
+        if (empty($updateStrings)) {
+            return FALSE;
+        }
+        
+        $updateString = join(", ", $updateStrings);
+        $sql = "UPDATE ItemTable SET $updateString WHERE $primaryKey = $pID";
+        
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            return FALSE;
+        }
+    }
+
     public function getSpecificItem($conn,$IID){
         $sql = "SELECT itemName,price,madeIn,departmentCode FROM ItemTable WHERE itemId = $IID";
         $result = $conn->query($sql);

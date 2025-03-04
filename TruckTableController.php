@@ -79,6 +79,33 @@ class TruckTableController {
         return $conn->query($sql);
     }
 
+    public function updateRecord($conn, $primaryKey, $pID, $updateFields) {
+        $updateStrings = [];
+        
+        foreach ($updateFields as $field => $value) {
+            if (is_numeric($value)) {
+                $updateStrings[] = "$field = $value";
+            } else {
+                $value = $conn->real_escape_string($value);
+                $updateStrings[] = "$field = '$value'";
+            }
+        }
+        
+        if (empty($updateStrings)) {
+            return false;
+        }
+        
+        $updateString = join(", ", $updateStrings);
+        $sql = "UPDATE TruckTable SET $updateString WHERE $primaryKey = $pID";
+        
+        if ($conn->query($sql) === TRUE) {
+            return TRUE;
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+            return FALSE;
+        }
+    }
+
     public function getTruckID($conn, $truckCode) {
         $sql = "SELECT truckId FROM TruckTable WHERE truckCode = '$truckCode'";
         $result = $conn->query($sql);
