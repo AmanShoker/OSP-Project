@@ -33,11 +33,9 @@ session_start();
 
             if (itemStatus === 'True') {
                 alert("Successfully added to your shopping cart");
-                window.close();
             }
             else if (itemStatus === 'False'){
                 alert("Item Already contained in shopping cart");
-                window.close();
             }
         </script>
         <header>
