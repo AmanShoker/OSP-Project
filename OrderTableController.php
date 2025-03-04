@@ -75,6 +75,18 @@ class OrderTableController {
         return $result;
     }
 
+    public function searchRecords($conn, $field, $value) {
+        // HANDLES INPUT PROPERLY BY SANITIZING IT
+        if (is_numeric($value)) {
+            $sql = "SELECT * FROM OrderTable WHERE $field = $value";
+        } else {
+            $value = $conn->real_escape_string($value);
+            $sql = "SELECT * FROM OrderTable WHERE $field = '$value'";
+        }
+
+        return $conn->query($sql);
+    }
+
     public function showOrderHistory($conn,$UID){
         $sql = "SELECT * FROM OrderTable WHERE userId = $UID";
         $result = $conn->query($sql);

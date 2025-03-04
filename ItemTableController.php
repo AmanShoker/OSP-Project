@@ -69,6 +69,18 @@ class ItemTableController {
         return $result;
     }
 
+    public function searchRecords($conn, $field, $value) {
+        // HANDLES INPUT PROPERLY BY SANITIZING IT
+        if (is_numeric($value)) {
+            $sql = "SELECT * FROM ItemTable WHERE $field = $value";
+        } else {
+            $value = $conn->real_escape_string($value);
+            $sql = "SELECT * FROM ItemTable WHERE $field = '$value'";
+        }
+
+        return $conn->query($sql);
+    }
+
     public function getSpecificItem($conn,$IID){
         $sql = "SELECT itemName,price,madeIn,departmentCode FROM ItemTable WHERE itemId = $IID";
         $result = $conn->query($sql);

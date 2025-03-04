@@ -95,6 +95,18 @@ class UserTableController {
         return $result;
     }
 
+    public function searchRecords($conn, $field, $value) {
+        // HANDLES INPUT PROPERLY BY SANITIZING IT
+        if (is_numeric($value)) {
+            $sql = "SELECT * FROM UserTable WHERE $field = $value";
+        } else {
+            $value = $conn->real_escape_string($value);
+            $sql = "SELECT * FROM UserTable WHERE $field = '$value'";
+        }
+
+        return $conn->query($sql);
+    }
+
     public function validLogin($conn,$usernameInput,$passwordInput){
         $sql = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordInput'";
         $result = $conn->query($sql);

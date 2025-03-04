@@ -73,6 +73,18 @@ class ShoppingCartTableController {
         return $result;
     }
 
+    public function searchRecords($conn, $field, $value) {
+        // HANDLES INPUT PROPERLY BY SANITIZING IT
+        if (is_numeric($value)) {
+            $sql = "SELECT * FROM ShoppingCartTable WHERE $field = $value";
+        } else {
+            $value = $conn->real_escape_string($value);
+            $sql = "SELECT * FROM ShoppingCartTable WHERE $field = '$value'";
+        }
+
+        return $conn->query($sql);
+    }
+
     public function removeFromCart($conn,$IID,$UID){
         $sql = "DELETE FROM ShoppingCartTable WHERE itemId = $IID AND userId = $UID";
 
