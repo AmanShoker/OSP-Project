@@ -12,8 +12,9 @@ class UserTableController {
             homeAddress VARCHAR(50),
             cityCode CHAR(6),
             username VARCHAR(30) NOT NULL,
-            userPassword VARCHAR(30) NOT NULL,
-            balance FLOAT
+            userPassword VARCHAR(50) NOT NULL,
+            balance FLOAT,
+            salt VARCHAR(64) NOT NULL
             )";
 
         if ($conn->query($sql) === TRUE) {
@@ -57,9 +58,10 @@ class UserTableController {
         }
     }
 
-    public function insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance){
-        $sql = "INSERT INTO UserTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance) 
-        VALUES ('$fullName','$telNo','$email','$address','$cityCode','$username','$password',$balance)";
+    public function insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance,$salt){
+        $passwordHash = md5($password.$salt);
+        $sql = "INSERT INTO UserTable (fullName,telNo,email,homeAddress,cityCode,username,userPassword,balance,salt) 
+        VALUES ('$fullName','$telNo','$email','$address','$cityCode','$username','$passwordHash',$balance,'$salt')";
 
         $sql2 = "SELECT * FROM UserTable WHERE username = '$username' OR email = '$email'";
         $result = $conn->query($sql2);
@@ -73,9 +75,10 @@ class UserTableController {
         }
     }
 
-    public function insertAdminRecord($conn,$username,$password,$adminFlag){
-        $sql = "INSERT INTO UserTable (username,userPassword,adminFlag) 
-        VALUES ('$username','$password',$adminFlag)";
+    public function insertAdminRecord($conn,$username,$password,$adminFlag,$salt){
+        $passwordHash = md5($password.$salt);
+        $sql = "INSERT INTO UserTable (username,userPassword,adminFlag,salt) 
+        VALUES ('$username','$passwordHash',$adminFlag,'$salt')";
 
         $sql2 = "SELECT * FROM UserTable WHERE username = '$username' ";
         $result = $conn->query($sql2);
@@ -135,10 +138,21 @@ class UserTableController {
     }
 
     public function validLogin($conn,$usernameInput,$passwordInput){
-        $sql = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordInput'";
+        $salt = "";
+        $sql = "SELECT salt FROM UserTable WHERE username = '$usernameInput'";
         $result = $conn->query($sql);
         if (mysqli_num_rows($result) == 1){
-            return TRUE;
+            $row = $result->fetch_assoc();
+            $salt = $row['salt'];
+        }
+        else{
+            return False;
+        }
+        $passwordHash = md5($passwordInput.$salt);
+        $sql2 = "SELECT * FROM UserTable WHERE username = '$usernameInput' AND userPassword = '$passwordHash'";
+        $result2 = $conn->query($sql2);
+        if (mysqli_num_rows($result2) == 1){
+            return $passwordHash;
         }
         else{
             return FALSE;

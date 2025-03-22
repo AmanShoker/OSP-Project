@@ -15,8 +15,8 @@ $email = $_POST['email'];
 // note: the current total cost of all items together is $3350, a max of 5000 is to ensure there are cases where a user is able to buy everything
 $balance = 0;
 
-
-if ($UTC->insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance)) {
+$salt = base64_encode(random_bytes(12));
+if ($UTC->insertRecord($conn,$fullName,$telNo,$email,$address,$cityCode,$username,$password,$balance,$salt)) {
     header("Location: SignIn.html");
     exit();
 } else {

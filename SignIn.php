@@ -8,9 +8,10 @@ $UTC = New UserTableController();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if ($UTC->validLogin($conn,$username,$password)) {
+if ($UTC->validLogin($conn,$username,$password)){
+    $passwordHash = $UTC->validLogin($conn,$username,$password);
     $_SESSION['username'] = $username;
-    $_SESSION['password'] = $password;
+    $_SESSION['password'] = $passwordHash;
     header("Location: Homepage.php");
     exit();
 } else {

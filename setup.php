@@ -39,7 +39,8 @@ $ITC->insertRecord($conn,"images/ipadpro.png","Apple Ipad Pro Tablet",750,"Canad
 $ITC->insertRecord($conn,"images/bold9900.png","BlackBerry Bold 9900",600,"USA","E");
 
 //Insert root user admin account
-$UTC->insertAdminRecord($conn,"root","1234",1);
+$salt = base64_encode(random_bytes(12));
+$UTC->insertAdminRecord($conn,"root","1234",1,$salt);
 
 //Terminate connection
 $conn->close();
