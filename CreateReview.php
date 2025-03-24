@@ -6,9 +6,10 @@ session_start();
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About Us</title>
+        <title>OSP Homepage</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
         <link rel="stylesheet" href="OSPstyles.css">
+        <link rel="stylesheet" href="CatalogueStyles.css">
     </head>
     <body>
     <header>
@@ -56,13 +57,13 @@ session_start();
                     </ul>
                 </li>
                 <?php endif; } ?>
-
+                
                 <?php if (isset($_SESSION['username'])): ?>
                     <li id="searchToggle">
                         <a id="searchLink">Search</a>
 
                         <form id="searchBar" action="Search.php" method="GET">
-                            <input type="text" name="searchQuery" placeholder="Search by Order-Id (leave blank for all)">
+                            <input type="text" name="searchQuery" placeholder="Search by Order-Id">
                             <button type="submit" class="search">Search</button>
                         </form>
                     </li>
@@ -78,33 +79,37 @@ session_start();
                 </li>
             </ul>
         </header>
+        
+        <form action="CreateReview.php" method="post">
+        <table>
+            <thead>
+                <h2>Leave a review letting everyone know what you think about a product or service!</h2>
+            </thead>
+            <tbody>
+                <tr> <th>Review</th> <th>Rating</th> </tr>
+                <tr> <td> <input name="review" type="text" size="150" maxlength="150"> </td> <td> <input name="rating" type="number" value=1 min="1" max="5"> </td> </tr>
+            </tbody>
+        </table>
+        <input style="float:right; margin-right:5%;" type="submit" name="createReview" value="Create">
+        </form>
 
-        <section id="about-us">
-            <h2>About Us</h2>
-            <div class="team-members">
-
-                <div class="member-card">
-                    <img src="images/aman.jpg" alt="Aman Shoker">
-                    <h3>Aman Shoker</h3>
-                    <p class="bio">I love Basketball.</p>
-                    <p class="contact">Email: aman.shoker@torontomu.ca</p>
-                </div>
-
-                <div class="member-card">
-                    <img src="images/anthony.jpeg" alt="images/tempPFP.png">
-                    <h3>Anthony Pochapsky</h3>
-                    <p class="bio">Tech dude</p>
-                    <p class="contact">Email: apochapsky@torontomu.ca</p>
-                </div>
-
-                <div class="member-card">
-                    <img src="images/AymanPFP.jpg" alt="name">
-                    <h3>Ayman Mohammad</h3>
-                    <p class="bio">Computer Science @ TMU</p>
-                    <p class="contact">Email: ayman.mohammad@torontomu.ca</p>
-                </div>
-            </div>
-        </section>
+        <?php
+        require "ReviewTableController.php";
+        if (isset($_POST["createReview"])){
+            $UTC = New UserTableController();
+            $RTC = New ReviewTableController();
+            $username = $_SESSION["username"];
+            $password = $_SESSION["password"];
+            $userIdRecordArray = $UTC->getUserId($conn,$username,$password);
+            $userIdRecord = $userIdRecordArray->fetch_assoc();
+            $userId = $userIdRecord["userId"];
+            $review = $_POST["review"];
+            $rating = $_POST["rating"];
+            $RTC->createReview($conn,$userId,$review,$rating);
+            $_POST = array();
+            alert("Your review has been created");
+        }
+        ?>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {

@@ -38,7 +38,17 @@ session_start();
                     </ul>
                 </li>
                 <li id="shoppingCart" ondrop="drop(event)" ondragover="allowDrop(event)"><a href="ShoppingCart.php">Shopping Cart</a></li>
-                <li><a href="#">Reviews</a></li>
+                <li>
+                    <a href="#">Reviews</a>
+                    <ul class="dropdown">
+                        <li><a href="Reviews.php">View Reviews</a></li>
+                        <?php 
+                        if (isset($_SESSION['username'])){
+                            echo "<li><a href='CreateReview.php'>Create Review</a></li>";
+                        }
+                        ?>
+                    </ul>
+                </li>
                 <?php 
                     require "connect.php";
                     require "UserTableController.php";
