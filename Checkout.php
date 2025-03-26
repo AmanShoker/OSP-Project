@@ -9,6 +9,7 @@ session_start();
         <title>Checkout</title>
         <link rel="icon" href="images/shopping_icon.png" type="image/png">
         <link rel="stylesheet" href="PaymentStyles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     </head>
     <body>
 
@@ -111,12 +112,15 @@ session_start();
                 </select><br><br>
                 <label for='deliveryDate'> Select Delivery Date:</label>
                 <input type="date" name="deliveryDate" id="deliveryDate" required>
-                <label for="cardNumber">Card Number:</label>
-                <input type="text" id="cardNumber" name="cardNumber" required>
-                <label for="expiryDate">Expiry Date:</label>
-                <input type="month" id="expiryDate" name="expiryDate" required>
-                <label for="cvv">CVV:</label>
-                <input type="text" id="cvv" name="cvv" required>
+                <label for='paymentOption'> Select Payment Option:</lable>
+                <select name="paymentOption" id="paymentOption" required>
+                    <option value="" disabled selected>...</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Debit Card">Debit Card</option>
+                    <option value="Gift Card">Gift Card</option>
+                </select>
+                <div id="paymentFields">
+                </div>
                 <input type="hidden" name="cartItems" value="<?php echo htmlspecialchars(serialize($records)); ?>">
                 <button type="submit">Pay</button>
             </form>
@@ -125,6 +129,25 @@ session_start();
             </div>
         </div>
 
+        <script>
+        $("#paymentOption").on("change", function(){
+            $("#paymentFields").html("");
+            if ($(this).val() == "Credit Card"){
+                $("#paymentFields").append('<br><label for="cardNumber">Credit Card Number:</label> <input type="text" id="cardNumber" name="cardNumber" required><br><br>');
+                $("#paymentFields").append('<label for="expiryDate">Expiry Date:</label> <input type="month" id="expiryDate" name="expiryDate" required><br><br>');
+                $("#paymentFields").append(' <label for="cvv">CVV:</label> <input type="text" id="cvv" name="cvv" required>');
+            }
+            else if ($(this).val() == "Debit Card"){
+                $("#paymentFields").append('<br><label for="cardNumber">Debit Card Number:</label> <input type="text" id="cardNumber" name="cardNumber" required><br><br>');
+                $("#paymentFields").append('<label for="expiryDate">Expiry Date:</label> <input type="month" id="expiryDate" name="expiryDate" required><br><br>');
+                $("#paymentFields").append(' <label for="cvv">CVV:</label> <input type="text" id="cvv" name="cvv" required>');
+            }
+
+            else if ($(this).val() == "Gift Card"){
+                $("#paymentFields").append('<br><label for="cardNumber">Gift Card Number:</label> <input type="text" id="cardNumber" name="cardNumber" required><br><br>');
+            }
+        });
+        </script>
 
         <script>
         const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD

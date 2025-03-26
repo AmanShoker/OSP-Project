@@ -96,7 +96,7 @@ session_start();
         
         $deliveryDate = $_GET['deliveryDate'];
         $selectedBranch = $_GET['branches'];
-        $cardNumber = $_GET['cardNumber'];
+        $paymentOption = $_GET['paymentOption'];
         $expiryDate = $_GET['expiryDate'];
         $cvv = $_GET['cvv'];
 
@@ -130,7 +130,7 @@ session_start();
 
                 <h2>Payment Details</h2>
                 <p><strong>Selected Branch:</strong> <?php echo $selectedBranch; ?></p>
-                <p><strong>Card Number:</strong> <?php echo $cardNumber; ?></p>
+                <p><strong>Payment Option:</strong> <?php echo $paymentOption; ?></p>
             </div>
             <div class="thank_you">
                 <p>Thank you for shopping with us! Your order will be delivered <?php echo $deliveryDate; ?></p>
