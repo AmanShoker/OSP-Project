@@ -106,10 +106,14 @@ session_start();
             $review = $_POST["review"];
             $rating = $_POST["rating"];
             $RTC->createReview($conn,$userId,$review,$rating);
-            $_POST = array();
-            alert("Your review has been created");
+            $_POST = array(); ?>
+
+            <script>alert("Your review has been created");</script>
+
+        <?php
         }
         ?>
+
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
