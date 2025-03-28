@@ -96,7 +96,8 @@ session_start();
                 }
                 echo "</table>";
                 echo "<div class='total_price'>SUBTOTAL: $$subTotal</div>";
-                ?>   
+                ?>
+
             </div>
         </div>
         <div class="centre">
@@ -109,7 +110,12 @@ session_start();
                     <option value='Downtown Toronto Branch'>Downtown Toronto Branch</option>
                     <option value='Etobicoke Branch'>Etobicoke Branch</option>
                     <option value='Mississauga Branch'>Mississauga Branch</option>
-                </select><br><br>
+                </select><br>
+                <label for="shippingMethod">Shipping Method:</label>
+                <select id="shippingMethod" name="shippingMethod">
+                <option value="standard">Standard (Free)</option>
+                <option value="express">Express ($50)</option>
+                </select><br>
                 <label for='deliveryDate'> Select Delivery Date:</label>
                 <input type="date" name="deliveryDate" id="deliveryDate" required>
                 <label for='paymentOption'> Select Payment Option:</lable>
@@ -121,6 +127,7 @@ session_start();
                 </select>
                 <div id="paymentFields">
                 </div>
+                <input type="hidden" name="shippingCost" value="">
                 <input type="hidden" name="cartItems" value="<?php echo htmlspecialchars(serialize($records)); ?>">
                 <button type="submit">Pay</button>
             </form>
@@ -150,8 +157,28 @@ session_start();
         </script>
 
         <script>
-        const today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        document.getElementById('deliveryDate').setAttribute('min', today);
+            function updateDeliveryDate() {
+            const shippingMethod = document.getElementById('shippingMethod').value;
+            const deliveryDateInput = document.getElementById('deliveryDate');
+            const today = new Date();
+            
+            shippingCost = shippingMethod === 'express' ? 50 : 0;
+            document.getElementsByName('shippingCost')[0].value = shippingCost;
+
+            const deliveryDate = new Date(today);
+            if (shippingMethod === 'express') {
+                deliveryDate.setDate(today.getDate() + 1);
+            } else {
+                deliveryDate.setDate(today.getDate() + 7);
+            }
+            
+            const formattedDate = deliveryDate.toISOString().split('T')[0];
+            deliveryDateInput.setAttribute('min', formattedDate);
+            deliveryDateInput.value = formattedDate;
+            }
+
+            updateDeliveryDate();
+            document.getElementById('shippingMethod').addEventListener('change', updateDeliveryDate);
         </script>
 
         <script async

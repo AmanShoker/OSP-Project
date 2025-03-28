@@ -44,8 +44,6 @@ session_start();
                     require "TripTableController.php";
                     require "TruckTableController.php";
                     require "ShoppingTableController.php";
-
-
                     
                     if (isset($_SESSION['username'])) {
                         $UTC = New UserTableController();
@@ -91,14 +89,13 @@ session_start();
         $userIdRecord = $userIdRecordArray->fetch_assoc();
         $userId=$userIdRecord["userId"];
 
+        $shippingCost = $_GET['shippingCost'];
         $cartItemsSerialized = $_GET['cartItems'];
         $cartItems = unserialize($cartItemsSerialized); 
         
         $deliveryDate = $_GET['deliveryDate'];
         $selectedBranch = $_GET['branches'];
         $paymentOption = $_GET['paymentOption'];
-        $expiryDate = $_GET['expiryDate'];
-        $cvv = $_GET['cvv'];
 
         $OTC = New OrderTableController();
         $TripTC = New TripTableController();
@@ -120,12 +117,12 @@ session_start();
                         $subTotal += $temp;
                     }
 
-                    $Total = $subTotal * 1.13;
+                    $Total = $subTotal * 1.13 + $shippingCost;
                     ?>
                 </table>
 
 
-                <div class="total_price">SUBTOTAL: $<?php echo $subTotal; ?><br>TOTAL: $<?php echo $Total; ?>
+                <div class="total_price">SUBTOTAL: $<?php echo $subTotal; ?><br>SHIPPING: $<?php echo $shippingCost; ?><br>TOTAL: $<?php echo $Total; ?>
                 </div>
 
                 <h2>Payment Details</h2>
